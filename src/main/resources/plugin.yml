@@ -1,0 +1,4 @@
+name: miniRPG
+version: "0.01"
+main: com.angel.mc.MiniRPG
+api-version: '1.20'

@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `t_player`
+(
+`id`   INTEGER PRIMARY KEY,
+`uuid` VARCHAR(64)
+)

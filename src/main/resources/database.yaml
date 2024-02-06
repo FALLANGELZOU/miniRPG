@@ -1,0 +1,10 @@
+dataset: "sqlite"
+url: "default.sqlite"
+username:
+password:
+# ??????
+initialSize: 5
+# ?????
+maxActive: 10
+# ????
+maxWait: 3000
