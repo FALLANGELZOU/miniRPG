@@ -1,10 +1,10 @@
 package com.angel.mc;
 
+import co.aikar.commands.BukkitCommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MiniRPG extends JavaPlugin {
     public static MiniRPGProxy ktProxy = new MiniRPGProxy();
-
     @Override
     public void onLoad() {
         ktProxy.bind(this);

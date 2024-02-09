@@ -34,21 +34,15 @@ repositories {
 dependencies {
     implementation("com.mybatis-flex:mybatis-flex-kotlin-extensions:1.0.5")
     implementation("com.mybatis-flex:mybatis-flex-core:1.7.9")
-//    implementation("com.fasterxml.jackson.core:jackson-core:2.14.0")
-//    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
-//    implementation("org.yaml:snakeyaml:2.0!!")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2")
     annotationProcessor("com.mybatis-flex:mybatis-flex-processor:1.7.9")
     implementation("com.alibaba:druid:1.2.21")
     implementation("com.zaxxer:HikariCP:5.1.0")
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
-//    implementation("org.parboiled:parboiled-java:1.4.1")
     // Other Dependencies
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 }
-
-
 
 
 tasks {
@@ -61,7 +55,6 @@ tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
         options.compilerArgs.addAll(arrayOf("-parameters"))
-//        options.compilerArgs.addAll(listOf("--release", "17"))
 //        options.isFork = true
 //        options.forkOptions.executable = "javac"
     }
