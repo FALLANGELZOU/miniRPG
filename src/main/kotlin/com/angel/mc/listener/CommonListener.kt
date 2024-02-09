@@ -32,7 +32,7 @@ class CommonListener: Listener {
                 }
                 playerTable.insert()
                 val moneyTable = MoneyTable().also {
-                    it.money = 0f
+                    it.money = 0
                     it.playerId = playerTable.id
                 }
                 moneyTable.insert()
