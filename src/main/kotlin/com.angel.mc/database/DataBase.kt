@@ -7,6 +7,7 @@ import com.angel.mc.configuration.Configuration
 import com.angel.mc.configuration.newFile
 import com.angel.mc.dao.PlayerMapper
 import com.mybatisflex.kotlin.scope.runFlex
+import com.zaxxer.hikari.HikariConfig
 import org.apache.ibatis.io.Resources
 import org.apache.ibatis.logging.stdout.StdOutImpl
 import java.io.BufferedReader
@@ -71,6 +72,13 @@ class DataBase(
         } else {
             cfg.url
         }
+
+//        val dsConfig = HikariConfig().also {
+////            it.driverClassName = datasetType.driver
+//            it.jdbcUrl = url
+//
+//        }
+
         val dataSource =  DruidDataSource()
         dataSource.driverClassName = datasetType.driver
         dataSource.url = url

@@ -4,7 +4,7 @@ import com.angel.mc.database.DatabaseCfg
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.KotlinFeature
+
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.io.File
@@ -39,16 +39,7 @@ object Configuration {
 
 
         private fun getMapper(factory: JsonFactory): ObjectMapper {
-            return ObjectMapper(factory).registerModule(
-                    KotlinModule.Builder()
-                        .withReflectionCacheSize(512)
-                        .configure(KotlinFeature.NullToEmptyCollection, false)
-                        .configure(KotlinFeature.NullToEmptyMap, false)
-                        .configure(KotlinFeature.NullIsSameAsDefault, false)
-                        .configure(KotlinFeature.SingletonSupport, false)
-                        .configure(KotlinFeature.StrictNullChecks, false)
-                        .build()
-            )
+            return ObjectMapper(factory).registerModule(KotlinModule())
         }
     }
 

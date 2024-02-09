@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("io.papermc.paperweight.userdev") version "1.5.11"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.angel"
@@ -24,16 +25,25 @@ repositories {
         name = "sonatype"
         setUrl("https://oss.sonatype.org/content/groups/public/")
     }
+    maven {
+        name = "aikar"
+        setUrl("https://repo.aikar.co/content/groups/aikar/" )
+    }
 }
 
 dependencies {
-
     implementation("com.mybatis-flex:mybatis-flex-kotlin-extensions:1.0.5")
     implementation("com.mybatis-flex:mybatis-flex-core:1.7.9")
+//    implementation("com.fasterxml.jackson.core:jackson-core:2.14.0")
+//    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
+//    implementation("org.yaml:snakeyaml:2.0!!")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
     annotationProcessor("com.mybatis-flex:mybatis-flex-processor:1.7.9")
     implementation("com.alibaba:druid:1.2.21")
+    implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
+//    implementation("org.parboiled:parboiled-java:1.4.1")
     // Other Dependencies
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 }
@@ -45,15 +55,24 @@ tasks {
     assemble {
         dependsOn(reobfJar) //  重新混淆
     }
-
+    build {
+        dependsOn(shadowJar)    //  使用shadowJar
+    }
     withType<JavaCompile> {
         options.encoding = "UTF-8"
+        options.compilerArgs.addAll(arrayOf("-parameters"))
+//        options.compilerArgs.addAll(listOf("--release", "17"))
+//        options.isFork = true
+//        options.forkOptions.executable = "javac"
     }
 
     withType<KotlinCompile> {
+
         kotlinOptions {
             jvmTarget = "17"
+
             freeCompilerArgs = listOf("-Xjvm-default=all")
+            kotlinOptions.javaParameters = true //  cant understand
         }
     }
 
@@ -77,6 +96,13 @@ tasks {
             configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
         })
     }
+
+    shadowJar {
+
+        //  使用shadowJar进行重定向
+        relocate("co.aikar.commands", "com.angel.mc.lib.acf")
+        relocate("co.aikar.locales", "com.angel.mc.lib.locales")
+    }
 }
 
 
@@ -85,7 +111,10 @@ java {
     withSourcesJar()
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+
 }
+
+
 
 kotlin {
 
@@ -107,3 +136,14 @@ tasks.register<Copy>("copy2plugin") {
 
 
 
+
+
+//configurations.all {
+//    resolutionStrategy {
+//        eachDependency {
+//            if (requested.group == "org.ow2.asm") {
+//                useVersion("9.5")
+//            }
+//        }
+//    }
+//}
