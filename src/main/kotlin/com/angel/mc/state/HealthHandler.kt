@@ -27,17 +27,15 @@ class HealthHandler {
                         AttributeModifier.Operation.ADD_NUMBER
                     ))
                     playerInfo.health = level
-//                    val saveResult = playerInfo.updateById()    //  不知道为什么没更新
-                    val saveResult = mapper<PlayerMapper>().update(playerInfo)
-                    if(saveResult == 0) {
+                    val saveResult = playerInfo.updateById()
+                    if(!saveResult) {
                         MiniRPG.ktProxy.info("[setMaxHealthLevel] 执行失败！")
                         healthAttribute.removeModifier(opUuid)
                         return@tx false
                     }
+                    return@tx true
                 }
             } ?: return@tx false
-
-            return@tx false
         }
 
     }
