@@ -32,14 +32,16 @@ repositories {
 }
 
 dependencies {
+    compileOnly("net.kyori:adventure-api:4.15.0")   // paper 自带了 // https://docs.advntr.dev/getting-started.html
+    implementation("dev.triumphteam:triumph-gui:3.1.7") //  简单GUI
     implementation("com.mybatis-flex:mybatis-flex-kotlin-extensions:1.0.5")
     implementation("com.mybatis-flex:mybatis-flex-core:1.7.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2")
-    annotationProcessor("com.mybatis-flex:mybatis-flex-processor:1.7.9")
     implementation("com.alibaba:druid:1.2.21")
     implementation("com.zaxxer:HikariCP:5.1.0")
-    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
+    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT") //  命令
+    annotationProcessor("com.mybatis-flex:mybatis-flex-processor:1.7.9")
     // Other Dependencies
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
 }
@@ -95,6 +97,7 @@ tasks {
         //  使用shadowJar进行重定向
         relocate("co.aikar.commands", "com.angel.mc.lib.acf")
         relocate("co.aikar.locales", "com.angel.mc.lib.locales")
+        relocate("dev.triumphteam.gui", "com.angel.mc.lib.gui")
     }
 }
 
@@ -130,13 +133,3 @@ tasks.register<Copy>("copy2plugin") {
 
 
 
-
-//configurations.all {
-//    resolutionStrategy {
-//        eachDependency {
-//            if (requested.group == "org.ow2.asm") {
-//                useVersion("9.5")
-//            }
-//        }
-//    }
-//}

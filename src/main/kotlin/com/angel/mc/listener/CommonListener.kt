@@ -7,6 +7,7 @@ import com.mybatisflex.core.row.Db
 import com.mybatisflex.kotlin.extensions.db.filter
 import com.mybatisflex.kotlin.extensions.kproperty.`in`
 import com.mybatisflex.kotlin.extensions.mapper.insert
+import net.kyori.adventure.inventory.Book
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -18,6 +19,7 @@ class CommonListener: Listener {
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
         registerAccount(player)
+
     }
 
 
