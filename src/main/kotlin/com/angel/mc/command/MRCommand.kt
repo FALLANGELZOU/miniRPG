@@ -5,6 +5,7 @@ import co.aikar.commands.annotation.CommandAlias
 import co.aikar.commands.annotation.Default
 import co.aikar.commands.annotation.Subcommand
 import com.angel.mc.menu.openMenu
+import com.angel.mc.state.StateManager
 import dev.triumphteam.gui.guis.Gui
 import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
@@ -20,5 +21,13 @@ class MRCommand: BaseCommand() {
     @Subcommand("menu|m")
     fun onMenu(player: Player) {
         player.openMenu()
+    }
+
+    @Subcommand("state|s")
+    inner class StateCommand: BaseCommand() {
+        @Subcommand("setHealthLevel")
+        fun setMaxHealth(player:Player, level: Int) {
+            StateManager.healthHandler.setMaxHealthLevel(player, level)
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.angel.mc
 
 import co.aikar.commands.BukkitCommandManager
 import co.aikar.commands.CommandManager
+import co.aikar.commands.PaperCommandManager
 import com.angel.mc.command.MRCommand
 import com.angel.mc.configuration.Configuration
 import com.angel.mc.database.DataBase
@@ -14,7 +15,7 @@ import kotlin.math.log
 
 class MiniRPGProxy() {
     lateinit var plugin: JavaPlugin
-    lateinit var commandManager: BukkitCommandManager
+    lateinit var commandManager: PaperCommandManager
     lateinit var bootstrap: MybatisFlexBootstrap
     lateinit var logger: Logger
     private lateinit var database: DataBase
@@ -27,7 +28,7 @@ class MiniRPGProxy() {
     }
     fun onEnable() {
         logger = plugin.server.logger
-        commandManager = BukkitCommandManager(plugin)
+        commandManager = PaperCommandManager(plugin)
         logger.info("Successfully running MiniRPG!")
         pluginInit()
         commandRegister()

@@ -89,7 +89,7 @@ class DataBase(
         cfg.initialSize?.let { dataSource.initialSize = it }
         cfg.maxActive?.let { dataSource.maxActive = it }
         cfg.maxWait?.let { dataSource.maxWait = it }
-
+        dataSource.isDefaultAutoCommit = true
         executeInitScript(dataSource, "init.sql");
         return dataSource
 

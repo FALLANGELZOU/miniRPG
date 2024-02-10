@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS `t_player`
 (
 `id`   INTEGER PRIMARY KEY,
-`uuid` VARCHAR(64)
+`uuid` VARCHAR(64),
+`health` integer
 );
 
 create table if not exists `t_money`

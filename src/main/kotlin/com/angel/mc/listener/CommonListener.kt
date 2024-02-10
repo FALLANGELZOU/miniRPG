@@ -22,7 +22,9 @@ class CommonListener: Listener {
 
     }
 
-
+    /**
+     * 注册玩家数据
+     */
     private fun registerAccount(player: Player) {
         Db.tx {
             val players = filter<PlayerTable> {
@@ -38,8 +40,6 @@ class CommonListener: Listener {
                     it.playerId = playerTable.id
                 }
                 moneyTable.insert()
-
-
             }
             return@tx true
         }
